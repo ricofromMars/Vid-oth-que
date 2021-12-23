@@ -1,6 +1,12 @@
+from functions import clear
+
 def showList(movieList):
+    clear()
     for movie in movieList:
         print(movie)
+    print()
+    input("Appuyez sur 'Entree'")
+
 
 def dateSorting(movieDict):
     """ Tri les films par dates de sortie """
@@ -48,16 +54,19 @@ def nameSorting(movieDict):
 
 def typeSorting(movieDict, vidType):
     """ Tri les films en fonction du support, Vhs ou Dvd """
+    clear()
     typeList = []
 
     for item in movieDict.values():
 
         if item.type == vidType:
             print(item)
+    print()
+    input("Appuyez sur 'Entree'")
 
 def rentSorting(movieDict, friendDict):
     """ Tri les films en fonction du statut de location """
-
+    clear()
     for movie in movieDict.values():
 
         if movie.is_rent:
@@ -65,3 +74,5 @@ def rentSorting(movieDict, friendDict):
             for friend in friendDict.values():
                 if friend.movieTitle == movie.name:
                     print(f"{friend.name}: {movie.name}")
+    print()
+    input("Appuyez sur 'Entree'")

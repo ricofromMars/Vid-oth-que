@@ -1,5 +1,6 @@
 from cleanDatas import cleanMovieDatas, cleanFriendsDatas
 from sortFunctions import dateSorting, nameSorting, rentSorting, typeSorting
+from functions import clear, showMenu
 
 films = [
     ("Blade Runner (1982)", "vhf"),
@@ -24,4 +25,33 @@ if __name__ == "__main__":
     
     movies = cleanMovieDatas(films)
     friends = cleanFriendsDatas(amis, movies)
-    typeSorting(movies, "Dvd")
+    
+    """ Corps du programme """
+    while True:
+        clear()
+        showMenu()
+        userChoice = input("-> ")
+
+        if userChoice == "1":
+            nameSorting(movies)
+        elif userChoice == "2":
+            dateSorting(movies)
+        elif userChoice == "3":
+            print("1 - Vhs")
+            print("2 - Dvd")
+            typeChoice = ""
+            while typeChoice != "1" and typeChoice != "2":
+                typeChoice = input("-> ")
+            if typeChoice == "1":
+                typeSorting(movies, "Vhs")
+            else:
+                typeSorting(movies, "Dvd")
+        elif userChoice == "4":
+            rentSorting(movies, friends)
+        elif userChoice == "5":
+            pass
+        elif userChoice == "6":
+            pass
+        elif userChoice == "7":
+            break
+        
