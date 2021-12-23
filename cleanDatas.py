@@ -32,16 +32,22 @@ def cleanMovieDatas(movie_list):
 
     return movies
 
-def cleanFriendsDatas(friend_list):
+def cleanFriendsDatas(friend_list, movieDict):
     """ Nettoie et formatte les données des amis et retourne un dictionnaire"""
     friends = {}
     name = ""
-
+    
     for datas in friend_list:
         name = datas[0].capitalize()
-        try:
-            friends[name] = Friend(name=name, movie=datas[1])
-        except IndexError:
-            friends[name] = Friend(name=name)
 
+        try:
+            movie = datas[1]
+        except IndexError:
+            movie = ""
+        
+        friends[name] = Friend(name=name, movie=movie)
+        """ Si movie existe alors on passe l'attribut is_rent du film à True """
+        if movie:
+            movieDict[movie].is_rent = True
+        
     return friends

@@ -1,4 +1,9 @@
+def showList(movieList):
+    for movie in movieList:
+        print(movie)
+
 def dateSorting(movieDict):
+    """ Tri les films par dates de sortie """
     dateList = []
 
     for item in movieDict.values():
@@ -17,9 +22,10 @@ def dateSorting(movieDict):
                     break
                 i += 1
 
-    return dateList
+    showList(dateList)
 
 def nameSorting(movieDict):
+    """ Tri les films par ordre alphabétiques """
     nameList = []
 
     for item in movieDict.values():
@@ -38,14 +44,24 @@ def nameSorting(movieDict):
                     break
                 i += 1
 
-    return nameList
+    showList(nameList)
 
 def typeSorting(movieDict, vidType):
+    """ Tri les films en fonction du support, Vhs ou Dvd """
     typeList = []
 
     for item in movieDict.values():
 
         if item.type == vidType:
-            typeList.append(item)
+            print(item)
 
-    return typeList
+def rentSorting(movieDict, friendDict):
+    """ Tri les films en fonction du statut de location """
+
+    for movie in movieDict.values():
+
+        if movie.is_rent:
+            """ Chercher à qui le film a été prêté """
+            for friend in friendDict.values():
+                if friend.movieTitle == movie.name:
+                    print(f"{friend.name}: {movie.name}")

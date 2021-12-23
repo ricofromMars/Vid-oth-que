@@ -1,5 +1,5 @@
 from cleanDatas import cleanMovieDatas, cleanFriendsDatas
-from sortFunctions import dateSorting, nameSorting, typeSorting
+from sortFunctions import dateSorting, nameSorting, rentSorting, typeSorting
 
 films = [
     ("Blade Runner (1982)", "vhf"),
@@ -23,5 +23,5 @@ amis = [
 if __name__ == "__main__":
     
     movies = cleanMovieDatas(films)
-    friends = cleanFriendsDatas(amis)
-    
+    friends = cleanFriendsDatas(amis, movies)
+    typeSorting(movies, "Dvd")

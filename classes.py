@@ -14,7 +14,7 @@ class Vhs(Movie):
         self.type = "Vhs"
 
     def __repr__(self):
-        return f"{self.name}\nDate de sortie: {self.release}\nSupport: Vhs"
+        return f"{self.name}, {self.release}, Vhs"
 
 class Dvd(Movie):
     def __init__(self, name, release, status=False):
@@ -22,12 +22,12 @@ class Dvd(Movie):
         self.type = "Dvd"
 
     def __repr__(self):
-        return f"{self.name}\nDate de sortie: {self.release}\nSupport: Dvd"
+        return f"{self.name}, {self.release}, Dvd"
 
 class Friend:
     def __init__(self, name, movie=""):
         self.name = name
-        self.movie = movie
+        self.movieTitle = movie
     
     def __repr__(self):
-        return f"{self.name}\n{self.movie}"
+        return f"{self.name}\n{self.movieTitle}"
