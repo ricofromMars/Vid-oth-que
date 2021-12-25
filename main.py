@@ -1,6 +1,10 @@
 from cleanDatas import cleanMovieDatas, cleanFriendsDatas
 from sortFunctions import dateSorting, nameSorting, rentSorting, typeSorting
-from functions import clear, showMenu
+from functions import clear, showMenu, get_friends_datas, get_movies_datas
+from os import path
+
+CUR_DIR = path.abspath(path.dirname(__file__))
+DATAS_PATH = path.join(CUR_DIR, "datas", "datas.txt")
 
 films = [
     ("Blade Runner (1982)", "vhf"),
@@ -23,12 +27,13 @@ amis = [
 
 if __name__ == "__main__":
     
-    movies = cleanMovieDatas(films)
-    friends = cleanFriendsDatas(amis, movies)
+    # Recuperation des donnees brutes et mise en forme dans des dictionnaires
+    movies = get_movies_datas(DATAS_PATH)
+    friends = get_friends_datas(DATAS_PATH)
+
     
     """ Corps du programme """
     while True:
-        clear()
         showMenu()
         userChoice = input("-> ")
 
