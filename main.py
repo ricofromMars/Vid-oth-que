@@ -1,5 +1,5 @@
 from sortFunctions import dateSorting, nameSorting, rentSorting, typeSorting
-from functions import clear, showMenu, get_friends_datas, get_movies_datas
+from functions import clear, findMovie, friendsList, showMenu, get_friends_datas, get_movies_datas
 from os import path
 
 CUR_DIR = path.abspath(path.dirname(__file__))
@@ -36,9 +36,9 @@ if __name__ == "__main__":
         elif userChoice == "4":
             rentSorting(movies, friends)
         elif userChoice == "5":
-            pass
+            friendsList(friends)
         elif userChoice == "6":
-            pass
+            findMovie(movies, friends)
         elif userChoice == "7":
             break
         

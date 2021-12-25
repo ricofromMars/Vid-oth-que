@@ -109,3 +109,27 @@ def get_friends_datas(pathDatas, movieDict):
             movieDict[rentMovie].is_rent = True
         
     return friends
+
+def friendsList(friends):
+    clear()
+    for key in friends:
+        print(f"{friends[key].name}")
+    print()
+    input("Appuyez sur 'Entree'")
+
+def findMovie(movies, friends):
+    clear()
+    title = input("Entrez le nom du film: ")
+    if title in movies:
+        print(f"{movies[title]}")
+        if movies[title].is_rent == True:
+            for friend in friends.values():
+                if friend.movieTitle == title:
+                    print(f"Vous avez prete ce film a {friend.name}")
+        else:
+            print("Ce film est chez vous.")
+    else:
+        print("Ce film n'est pas dans la videotheque.")
+
+    print()
+    input("Appuyez sur 'Entree'")
