@@ -1,7 +1,7 @@
 from os import system
 import sys
 
-from classes import Vhs, Dvd
+from classes import Vhs, Dvd, Friend
 
 def clear():
     if sys.platform == "win32":
@@ -40,6 +40,22 @@ def get_support(element):
     else:
         return "Dvd"
 
+def get_name(element):
+    i = 1
+    name = ""
+    while element[i] != '"':
+        name += element[i]
+        i += 1
+    return name.strip()
+
+def get_rentMovie(element):
+    i = 1
+    title = ""
+    while element[i] != '"':
+        title += element[i]
+        i += 1
+    return title.strip()
+
 def get_movies_datas(pathDatas):
     movies = {}
     with open(pathDatas, "r") as f:
@@ -66,5 +82,30 @@ def get_movies_datas(pathDatas):
     return movies
 
 
-def get_friends_datas(pathDatas):
-    pass
+def get_friends_datas(pathDatas, movieDict):
+    friends = {}
+    datas = []
+    with open(pathDatas, 'r') as f:
+        line = f.readline()
+        while "amis" not in line:
+            line = f.readline()
+        line = f.readline()
+        while "]" not in line:
+            datas.append(line)
+            line = f.readline()
+
+    for element in datas:
+        element = element.strip().lstrip("(").rstrip("),")
+        elements = element.split(",")
+        name = get_name(elements[0])
+        try:
+            rentMovie = get_rentMovie(elements[1].strip())
+        except IndexError:
+            rentMovie = ""
+
+        friends[name] = Friend(name=name, movie=rentMovie)
+        """ Si rentMovie existe alors on passe l'attribut is_rent du film à True """
+        if rentMovie:
+            movieDict[rentMovie].is_rent = True
+        
+    return friends
